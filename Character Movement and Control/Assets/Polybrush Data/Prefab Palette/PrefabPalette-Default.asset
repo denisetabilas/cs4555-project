@@ -95,7 +95,7 @@ MonoBehaviour:
     name: PT_Fruit_Tree_01_apples
   - gameObject: {fileID: 9135811463984137963, guid: 021bfbcf15abb7543a51a487fa1c05ef, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 39.25
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -111,7 +111,7 @@ MonoBehaviour:
     name: PT_Fruit_Tree_01_green_cut
   - gameObject: {fileID: 4561261066736219567, guid: 20613689bafb4544cb770f64d1a03714, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 55
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 0, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
