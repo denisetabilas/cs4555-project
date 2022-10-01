@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - NPC
+  - PickUp
   layers:
   - Default
   - TransparentFX
