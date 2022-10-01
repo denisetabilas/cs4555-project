@@ -7,12 +7,31 @@ public class Player : MonoBehaviour
 {
     private GameObject triggeringNpc;
     private bool triggering; //check if player is colliding with NPC 
+    public GameObject spaceShip;
 
     public Text npcText;
     public GameObject panel;
     public Text dialogueText;
 
+
+    private int count;
     private bool dialogueOpen = false;
+
+    void Start()
+    {
+        count = 0;
+
+        SetCount();
+        spaceShip.SetActive(false);
+    }
+
+    void SetCount()
+    {
+        if (count >= 4)
+        {
+            spaceShip.SetActive(true);
+        }
+    }
 
     void Update()
     {
@@ -30,7 +49,7 @@ public class Player : MonoBehaviour
                 {
                     dialogueOpen = true;
                     panel.SetActive(true);
-                    dialogueText.text = "Hello stranger";
+                    dialogueText.text = "Collect the Spaceship Parts!";
                     npcText.text = "";
                 }
                 else
@@ -59,6 +78,12 @@ public class Player : MonoBehaviour
         {
             triggering = true; //then it will trigger the event 
             triggeringNpc = other.gameObject; //selecting the npc as the trigger object 
+        }
+        else if(other.tag == "PickUp")
+        {
+            other.gameObject.SetActive(false);
+            count++;
+            SetCount();
         }
     }
     void OnTriggerExit(Collider other) //
