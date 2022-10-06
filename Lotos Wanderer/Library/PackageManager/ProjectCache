@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638005233844441808
-    m_Hash: 1194759167
+      ticks: 638006779062383081
+    m_Hash: 2255507688
   m_LockFileStatus:
     m_FilePath: C:/Users/dtabila/Documents/GitHub/cs4555-project/Lotos Wanderer/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638005233844536824
-    m_Hash: 2112136521
+      ticks: 638006779062543099
+    m_Hash: 1228003090
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
