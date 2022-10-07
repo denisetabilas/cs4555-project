@@ -61,11 +61,11 @@ public class LotosPlayer : MonoBehaviour
         if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
         {
             anim.SetInteger("AnimationPar", 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Space was pressed");
-            anim.SetInteger("AnimationPar", 2);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("Space was pressed");
+                anim.SetInteger("AnimationPar", 2);
+            }
         }
         else
         {
