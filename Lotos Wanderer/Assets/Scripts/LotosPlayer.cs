@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using UnityEngine.InputSystem;
 
 
 
@@ -57,7 +56,6 @@ public class LotosPlayer : MonoBehaviour
 
     void Update()
     {
-        var keyboard = Keyboard.current;
         if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
         {
             anim.SetInteger("AnimationPar", 1);
