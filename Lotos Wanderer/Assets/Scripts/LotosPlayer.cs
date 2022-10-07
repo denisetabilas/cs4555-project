@@ -59,11 +59,11 @@ public class LotosPlayer : MonoBehaviour
     {
         var keyboard = Keyboard.current;
         if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
-            {
-            if (keyboard.spaceKey.wasPressedThisFrame)
-                anim.SetInteger("AnimationPar", 2);
+        {
             anim.SetInteger("AnimationPar", 1);
         }
+        else if (Input.GetKeyDown(KeyCode.Space))
+            anim.SetInteger("AnimationPar", 2);
         else
         {
             anim.SetInteger("AnimationPar", 0);
