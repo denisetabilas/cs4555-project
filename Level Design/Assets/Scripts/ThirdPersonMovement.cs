@@ -23,6 +23,8 @@ public class ThirdPersonMovement : MonoBehaviour
 	Vector3 velocity;
 	bool isGrounded;
 
+	
+
 	void Start()
 	{
 		//Cursor.lockState = CursorLockMode.Locked;

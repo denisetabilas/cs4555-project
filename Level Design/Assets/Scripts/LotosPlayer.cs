@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class LotosPlayer : MonoBehaviour
 {
-
+     public Interactable focus;
     private Animator anim;
     private CharacterController controller;
 
@@ -72,45 +72,90 @@ public class LotosPlayer : MonoBehaviour
         {
             anim.SetInteger("AnimationPar", 0);
         }
-
         /*
-        if (triggering)
-        {
-            //print("Player is triggering with " + triggeringNpc); //for testing 
-            //npcText.SetActive(true);
-            if(dialogueOpen)
-                npcText.text = "";
-            else
-                npcText.text = "Press 'E'";
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (dialogueOpen == false)
-                {
-                    dialogueOpen = true;
-                    panel.SetActive(true);
-                    dialogueText.text = "Collect the Spaceship Parts!";
-                    npcText.text = "";
-                }
-                else
-                    npcText.text = "Press 'E'";
-            }
+        //if hit right mouse 
+        if(Input.GetMouseButtonDown(1))
+          {
+               //create ray
+               Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+               RaycastHit hit;
 
-            if (Input.GetKeyDown(KeyCode.F) &&  dialogueOpen)
-            {
-                dialogueOpen = false;
-                dialogueText.text = "";
-                panel.SetActive(false);
-            }
-        }
-        else
-        {
-            npcText.text = "";
-            dialogueText.text = "";
-            panel.SetActive(false);
-        }
-        */
+               //if the ray hits 
+               if(Physics.Raycast(ray, out hit, 100))
+               {
+                    Interactable interactable = hit.collider.GetComponent<Interactable>();
+                    if (interactable != null) //if there actually is an interactable on what is hit 
+                    {
+                         SetFocus(interactable);
+                    }
+               }
+          }
 
-    }
+          //if hit left mouse 
+          if (Input.GetMouseButtonDown(0))
+          {
+               //create ray
+               Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+               RaycastHit hit;
+
+               //if the ray hits 
+               if (Physics.Raycast(ray, out hit, 100))
+               {
+                    motor.MoveToPoint(hit.point);
+
+                    //stop focus
+                    RemoveFocus();
+               }
+          }*/
+
+
+          /*
+          if (triggering)
+          {
+              //print("Player is triggering with " + triggeringNpc); //for testing 
+              //npcText.SetActive(true);
+              if(dialogueOpen)
+                  npcText.text = "";
+              else
+                  npcText.text = "Press 'E'";
+              if (Input.GetKeyDown(KeyCode.E))
+              {
+                  if (dialogueOpen == false)
+                  {
+                      dialogueOpen = true;
+                      panel.SetActive(true);
+                      dialogueText.text = "Collect the Spaceship Parts!";
+                      npcText.text = "";
+                  }
+                  else
+                      npcText.text = "Press 'E'";
+              }
+
+              if (Input.GetKeyDown(KeyCode.F) &&  dialogueOpen)
+              {
+                  dialogueOpen = false;
+                  dialogueText.text = "";
+                  panel.SetActive(false);
+              }
+          }
+          else
+          {
+              npcText.text = "";
+              dialogueText.text = "";
+              panel.SetActive(false);
+          }
+          */
+
+     }
+     void SetFocus(Interactable newFocus)
+     {
+          focus = newFocus;
+     }
+
+     void RemoveFocus()
+     {
+          focus = null;
+     }
     /*
     void OnTriggerEnter (Collider other) //if player is colliding
     {
