@@ -62,5 +62,10 @@ public class ThirdPersonMovement : MonoBehaviour
 			controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
 		}
+
+		//if player is within radius 
+			//if object is interactable 
+				//set focus to interactable 
+				//interact 
 	}
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.87687236, g: 0.7291505, b: 0.6162275, a: 1}
+  m_IndirectSpecularColor: {r: 0.87687206, g: 0.72915024, b: 0.6162275, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -697,7 +697,7 @@ Transform:
   - {fileID: 1283923039}
   - {fileID: 454916569}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &128284831
 MonoBehaviour:
@@ -4016,28 +4016,14 @@ GameObject:
   - component: {fileID: 327947707}
   - component: {fileID: 327947706}
   - component: {fileID: 327947705}
-  - component: {fileID: 327947704}
-  m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Untagged
+  - component: {fileID: 327947709}
+  m_Layer: 6
+  m_Name: Item
+  m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &327947704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327947703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f909ba7d69dd140a8aaf607c8e3851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 9
-  interactionTransform: {fileID: 0}
 --- !u!135 &327947705
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4046,10 +4032,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327947703}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.59
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &327947706
 MeshRenderer:
@@ -4109,13 +4095,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327947703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 167.16, y: 26.69, z: 855.38}
+  m_LocalPosition: {x: 167.16, y: 17.9, z: 855.38}
   m_LocalScale: {x: 4.1024, y: 4.1024, z: 4.1024}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &327947709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327947703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545db9d345ddf9d4a8c6db0b9bbce6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 13.51
+  interactionTransform: {fileID: 327947708}
+  item: {fileID: 11400000, guid: 0c4afd94eb839a54886ca709410510d4, type: 2}
 --- !u!1001 &337694969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5810,7 +5811,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &659426310
 PrefabInstance:
@@ -8189,7 +8190,7 @@ Transform:
   - {fileID: 321965241}
   - {fileID: 154129888}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158497152
 GameObject:
@@ -8246,7 +8247,7 @@ Transform:
   - {fileID: 461330902}
   - {fileID: 1454217454}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1223522295
 PrefabInstance:
@@ -9860,6 +9861,7 @@ GameObject:
   - component: {fileID: 1486278574}
   - component: {fileID: 1486278573}
   - component: {fileID: 1486278572}
+  - component: {fileID: 1486278575}
   m_Layer: 0
   m_Name: Third Person Player
   m_TagString: Player
@@ -9940,6 +9942,28 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &1486278575
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486278570}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!4 &1486529836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6673909898283968807, guid: b0adee03dd392754a90deecbbea82c95, type: 3}

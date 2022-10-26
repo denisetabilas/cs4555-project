@@ -9,6 +9,7 @@ public class ItemPickup : Interactable
      {
           base.Interact();
           PickUp();
+        Debug.Log("picked up");
      }
 
      void PickUp()
