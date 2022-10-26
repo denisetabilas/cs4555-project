@@ -41,7 +41,6 @@ public class Inventory : MonoBehaviour
           return true;
      }
 
-
      public void Remove(Item item)
      {
           items.Remove(item);
@@ -50,6 +49,4 @@ public class Inventory : MonoBehaviour
           if (onItemChangedCallback != null)
                onItemChangedCallback.Invoke(); //UI update   
      }
-
-
 }
