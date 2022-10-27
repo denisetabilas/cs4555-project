@@ -7,6 +7,7 @@ public class NPCTalk : Interactable
 {
      public NPC npc; //link item to script
      public GameObject InstructionText;
+     
 
      public override void Interact()
      {
@@ -22,8 +23,9 @@ public class NPCTalk : Interactable
 
      void Talk()
      {
-          
-          Debug.Log("interacting with " + npc.name);
+        Dialogue d = new Dialogue(npc.name, npc.getDialogue());
+        FindObjectOfType<DialogueUI>().StartDialogue(d);
+          Debug.Log("Talking with " + npc.name);
      }
 
 }

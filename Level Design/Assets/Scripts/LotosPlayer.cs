@@ -14,15 +14,18 @@ public class LotosPlayer : MonoBehaviour
     private Animator anim;
     private CharacterController controller;
 
+    Interactable interactable;
+
     public float speed = 600.0f;
     public float turnSpeed = 400.0f;
     private Vector3 moveDirection = Vector3.zero;
     //public float gravity = 20.0f;
 
 
-    private bool triggering; //check if player is colliding with NPC 
+    private bool hasTriggeredNPC; //check if player is colliding with NPC 
     
-    private GameObject triggeringNpc;
+    private GameObject triggeredNPC;
+    public GameObject InstructionText;
     /*
     public GameObject spaceShip;
     public Text npcText;
@@ -32,12 +35,15 @@ public class LotosPlayer : MonoBehaviour
 
     private int count;
     */
-    private bool dialogueOpen = false;
+    private bool dialogueOpen;
     
     void Start()
     {
+        hasTriggeredNPC = false;
         controller = GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
+        InstructionText.SetActive(false);
+        dialogueOpen = false;
 
         /*
         count = 0;
@@ -72,6 +78,29 @@ public class LotosPlayer : MonoBehaviour
         else
         {
             anim.SetInteger("AnimationPar", 0);
+        }
+
+        if (hasTriggeredNPC)
+        {
+            //display instruction to press interact button 
+            if (!dialogueOpen) //if player has not yet activated dialogue, display instruction how to activate
+            {
+                InstructionText.SetActive(true);
+                InstructionText.GetComponent<Text>().text = "Press 'E' to Talk"; //replace E with not hard coded thing
+            }
+            if (Input.GetButtonDown("Interact"))
+            {
+                InstructionText.SetActive(false);
+                dialogueOpen = true;
+                Debug.Log("Opened Dialogue");
+                if (interactable)
+                {
+                    //Debug.Log("focus interactable");
+                    SetFocus(interactable);
+                }
+                else
+                    Debug.Log("no interactable");
+            }
         }
 
 
@@ -123,6 +152,7 @@ public class LotosPlayer : MonoBehaviour
             focus = newFocus;
             //motor.FollowTarget(newFocus);
         }
+        Debug.Log("Setting focus");
 
         newFocus.OnFocused(transform); //notify interactable every click on it 
 
@@ -143,25 +173,20 @@ public class LotosPlayer : MonoBehaviour
         
         if (other.tag == "NPC") //if the object it is colliding with has the tag NPC
         {
-               Debug.Log("Collided with NPC");
-               Interactable interactable= other.GetComponent<Interactable>();
-               if (interactable)
-               {
-                    Debug.Log("focus interactable");
-                    SetFocus(interactable);
-               }
-               else
-                    Debug.Log("no interactable");
-               /*
-            triggering = true; //then it will trigger the event 
-            triggeringNpc = other.gameObject; //selecting the npc as the trigger object 
-               */
-          }
+               hasTriggeredNPC = true;
+               //Debug.Log("Collided with NPC");
+                interactable = other.GetComponent<Interactable>();
+
+            /*
+         triggering = true; //then it will trigger the event 
+         triggeringNpc = other.gameObject; //selecting the npc as the trigger object 
+            */
+        }
         else if (other.tag == "PickUp")
         {
-            triggering = true;
+            //hasTriggeredNPC = true;
             Debug.Log("Collided with PickUp");
-            Interactable interactable = other.GetComponent<Interactable>();
+            interactable = other.GetComponent<Interactable>();
             if (interactable != null)
             {
                 Debug.Log("focus interactable");
@@ -180,12 +205,14 @@ public class LotosPlayer : MonoBehaviour
         if (other.tag == "NPC") 
         {
             dialogueOpen = false;
-            triggering = false;
-            triggeringNpc = null; //not triggering with anything 
+            hasTriggeredNPC = false;
+            triggeredNPC = null; //not triggering with anything 
+            InstructionText.SetActive(false);
+            dialogueOpen = false;
         }
         if (other.tag == "PickUp")
         {
-            triggering = false;
+            hasTriggeredNPC = false;
             RemoveFocus();
         }
     }

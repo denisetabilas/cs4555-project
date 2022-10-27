@@ -18,8 +18,13 @@ public class DialogueUI : MonoBehaviour
 		sentences = new Queue<string>();
 	}
 
+	
+
 	public void StartDialogue(Dialogue dialogue)
 	{
+		Debug.Log("starting dialogue");
+
+		/*
 		animator.SetBool("IsOpen", true);
 
 		//Debug.Log("Starting convo with " + dialogue.name); //testing
@@ -33,6 +38,7 @@ public class DialogueUI : MonoBehaviour
 			sentences.Enqueue(sentence);
 		}
 		DisplayNextSentence();
+		*/
 	}
 
 	public void DisplayNextSentence()
