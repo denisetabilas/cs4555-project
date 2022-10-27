@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
-
-
-
 public class LotosPlayer : MonoBehaviour
 {
 
@@ -19,7 +14,11 @@ public class LotosPlayer : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     //public float gravity = 20.0f;
 
+    //Set and initialize Health variables
+    public int maxHealth = 100;
+    public int currHealth;
 
+    public HealthBar healthBar;
 
     /*
     private GameObject triggeringNpc;
@@ -37,6 +36,9 @@ public class LotosPlayer : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
+
+        currHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
         /*
         count = 0;
@@ -67,6 +69,10 @@ public class LotosPlayer : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space))
         {
             anim.SetInteger("AnimationPar", 2);
+        }
+        else if (Input.GetKeyDown("k"))
+        {
+            TakeDamage(2);
         }
         else
         {
@@ -137,5 +143,11 @@ public class LotosPlayer : MonoBehaviour
 
     }*/
 
+    //Damage Taking method
+    void TakeDamage(int damage) 
+    {
+        currHealth -= damage;
 
+        healthBar.SetHealth(currHealth);
+    }
 }
