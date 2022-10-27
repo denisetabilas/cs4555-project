@@ -21,9 +21,9 @@ public class LotosPlayer : MonoBehaviour
 
 
     private bool triggering; //check if player is colliding with NPC 
-    /*
-    private GameObject triggeringNpc;
     
+    private GameObject triggeringNpc;
+    /*
     public GameObject spaceShip;
     public Text npcText;
     public GameObject panel;
@@ -31,8 +31,9 @@ public class LotosPlayer : MonoBehaviour
 
 
     private int count;
-    private bool dialogueOpen = false;
     */
+    private bool dialogueOpen = false;
+    
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -139,13 +140,24 @@ public class LotosPlayer : MonoBehaviour
     void OnTriggerEnter(Collider other) //if player is colliding
     {
         Debug.Log("triggered");
-        /*
+        
         if (other.tag == "NPC") //if the object it is colliding with has the tag NPC
         {
+               Debug.Log("Collided with NPC");
+               Interactable interactable= other.GetComponent<Interactable>();
+               if (interactable)
+               {
+                    Debug.Log("focus interactable");
+                    SetFocus(interactable);
+               }
+               else
+                    Debug.Log("no interactable");
+               /*
             triggering = true; //then it will trigger the event 
             triggeringNpc = other.gameObject; //selecting the npc as the trigger object 
-        }*/
-        if (other.tag == "PickUp")
+               */
+          }
+        else if (other.tag == "PickUp")
         {
             triggering = true;
             Debug.Log("Collided with PickUp");
@@ -164,14 +176,13 @@ public class LotosPlayer : MonoBehaviour
     }
     void OnTriggerExit(Collider other) //
     {
-        /*
+        
         if (other.tag == "NPC") 
         {
             dialogueOpen = false;
             triggering = false;
             triggeringNpc = null; //not triggering with anything 
         }
-        */
         if (other.tag == "PickUp")
         {
             triggering = false;
