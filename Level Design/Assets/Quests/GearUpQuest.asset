@@ -18,4 +18,5 @@ MonoBehaviour:
     ahead and get ready for battle!
   itemsToCollect:
   - {fileID: 11400000, guid: 0c4afd94eb839a54886ca709410510d4, type: 2}
-  itemRewards: []
+  itemRewards:
+  - {fileID: 11400000, guid: 90d10f8f8ccef6548ae3b31f669807c0, type: 2}

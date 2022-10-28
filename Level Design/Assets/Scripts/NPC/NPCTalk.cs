@@ -24,17 +24,6 @@ public class NPCTalk : Interactable
      {
           Debug.Log("Talking with " + npc.name);
           FindObjectOfType<DialogueUI>().StartDialogue(npc);
-          /*
-          Dialogue d;
-          if (!hasMet)
-          { 
-               d = new Dialogue(npc.name, npc.firstDialogue);
-               hasMet = true;
-          }
-          else
-               d = new Dialogue(npc.name, npc.defaultDialogue);
-          FindObjectOfType<DialogueUI>().StartDialogue(d, npc.hasQuest);
-          */
      }
 
 }

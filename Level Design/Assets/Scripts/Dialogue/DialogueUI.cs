@@ -46,27 +46,6 @@ public class DialogueUI : MonoBehaviour
 
 	}		
 
-	/*
-	public void StartDialogue(Dialogue dialogue, bool q)
-	{
-		hasQuest = q;
-
-		Debug.Log("starting dialogue");
-		//animator.SetBool("IsOpen", true);
-
-		Debug.Log("Starting convo with " + dialogue.name); //testing
-
-		nameText.text = dialogue.name;
-
-		//clear any sentences that were already there 
-		sentences.Clear();
-		foreach (string sentence in dialogue.sentences)
-		{
-			sentences.Enqueue(sentence);
-		}
-		DisplayNextSentence();
-	}
-	*/
 
 	public void DisplayNextSentence()
 	{
@@ -93,17 +72,17 @@ public class DialogueUI : MonoBehaviour
 	}
 	void EndDialogue()
 	{
-		Debug.Log("End of conversation.");
-		LotosPlayer player = FindObjectOfType<LotosPlayer>();
-		player.dialogueOpen = false;
-		player.DiaUI.SetActive(false);
-
 		if (hasQuest)
           {
 			//open quest from Quest UI
 			FindObjectOfType<QuestUI>().OpenQuest(quest);
 			hasQuest = false;
-          }			
+          }
+		Debug.Log("End of conversation.");
+		LotosPlayer player = FindObjectOfType<LotosPlayer>();
+		player.dialogueOpen = false;
+		player.DiaUI.SetActive(false);
+			
 		//animator.SetBool("IsOpen", false);
 
 		
