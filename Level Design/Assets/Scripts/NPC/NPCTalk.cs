@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class NPCTalk : Interactable
 {
-     public NPC npc; //link item to script
+     public NPC npc;
      public GameObject InstructionText;
      private bool hasMet;
-
 
      private void Start()
      {
@@ -20,17 +19,14 @@ public class NPCTalk : Interactable
           Debug.Log("in NPCTalk");
           base.Interact();
           Talk();
-          //InstructionText.GetComponent<Text>().text = "Press 'E' to interact";
+          
      }
-     /*
-     private void Update()
-     {
-          if (Input.GetButtonDown("Interact"))
-               Talk();
-     }*/
 
      void Talk()
      {
+          Debug.Log("Talking with " + npc.name);
+          FindObjectOfType<DialogueUI>().StartDialogue(npc);
+          /*
           Dialogue d;
           if (!hasMet)
           { 
@@ -39,8 +35,8 @@ public class NPCTalk : Interactable
           }
           else
                d = new Dialogue(npc.name, npc.defaultDialogue);
-          Debug.Log("Talking with " + npc.name);
-        FindObjectOfType<DialogueUI>().StartDialogue(d);
+          FindObjectOfType<DialogueUI>().StartDialogue(d, npc.hasQuest);
+          */
      }
 
 }

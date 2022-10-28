@@ -22,3 +22,6 @@ MonoBehaviour:
   - Maybe there is something there that can help defeat the evil...
   defaultDialogue:
   - Did you defeat the monsters yet?
+  hasQuest: 0
+  quest: {fileID: 11400000, guid: 134a2bd806fdab442a09275590e9391b, type: 2}
+  hasMet: 1
