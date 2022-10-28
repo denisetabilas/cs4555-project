@@ -16,15 +16,18 @@ public class NPC : ScriptableObject
      public List<string> firstDialogue = new List<string>();
      public List<string> defaultDialogue = new List<string>();
 
-     private bool hasMet = false; 
-
+     /*
      public List<string> getDialogue()
      {
-          if (hasMet == false)
+          Debug.Log("getDialogue()");
+          if (!hasMet)
           {
+               Debug.Log("return first dialogue");
                hasMet = true;
                return firstDialogue;
           }
-          return defaultDialogue;
+          else
+               return defaultDialogue;
      }
+     */
 }

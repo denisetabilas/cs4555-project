@@ -26,7 +26,6 @@ public class Interactable : MonoBehaviour
      {
           if (isFocus)
           {
-            Debug.Log("Focused and interacting");
                 float distance = Vector3.Distance(player.position, interactionTransform.position);
                 //Debug.Log("in interactable update");
                 //if player is within radius and has not interacted with interactable yet

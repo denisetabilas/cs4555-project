@@ -26,6 +26,14 @@ public class LotosPlayer : MonoBehaviour
     
     private GameObject triggeredNPC;
     public GameObject InstructionText;
+
+
+     //variables for dialogue 
+     public GameObject DiaUI;
+
+     //public GameObject DialogueBox;
+     //public GameObject DialogueText;
+
     /*
     public GameObject spaceShip;
     public Text npcText;
@@ -35,7 +43,7 @@ public class LotosPlayer : MonoBehaviour
 
     private int count;
     */
-    private bool dialogueOpen;
+    public bool dialogueOpen;
     
     void Start()
     {
@@ -43,6 +51,9 @@ public class LotosPlayer : MonoBehaviour
         controller = GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
         InstructionText.SetActive(false);
+          DiaUI.SetActive(false);
+         // DialogueBox.SetActive(false);
+         // DialogueText.SetActive(false);
         dialogueOpen = false;
 
         /*
@@ -86,22 +97,41 @@ public class LotosPlayer : MonoBehaviour
             if (!dialogueOpen) //if player has not yet activated dialogue, display instruction how to activate
             {
                 InstructionText.SetActive(true);
-                InstructionText.GetComponent<Text>().text = "Press 'E' to Talk"; //replace E with not hard coded thing
+               DiaUI.SetActive(false);
+               InstructionText.GetComponent<Text>().text = "Press 'E' to Talk"; //replace E with not hard coded thing
+                 if (Input.GetButtonDown("Interact"))
+                 {
+                     if (interactable)
+                     {
+                         //Debug.Log("focus interactable");
+                         SetFocus(interactable);
+                     }
+                     else
+                         Debug.Log("no interactable");
+                    InstructionText.SetActive(false);
+                    DiaUI.SetActive(true);
+                    dialogueOpen = true;
+                    Debug.Log("Opened Dialogue");
+                 }
             }
-            if (Input.GetButtonDown("Interact"))
+            else // the dialogue has been activated 
             {
-                InstructionText.SetActive(false);
-                dialogueOpen = true;
-                Debug.Log("Opened Dialogue");
-                if (interactable)
-                {
-                    //Debug.Log("focus interactable");
-                    SetFocus(interactable);
-                }
-                else
-                    Debug.Log("no interactable");
+               if (Input.GetButtonDown("Interact"))
+               {
+                    FindObjectOfType<DialogueUI>().DisplayNextSentence();
+               }
             }
         }
+        else
+          {
+               if (dialogueOpen)
+               {
+                    if (Input.GetButtonDown("Interact"))
+                    {
+                         FindObjectOfType<DialogueUI>().DisplayNextSentence();
+                    }
+               }
+          }
 
 
 
@@ -204,11 +234,11 @@ public class LotosPlayer : MonoBehaviour
         
         if (other.tag == "NPC") 
         {
-            dialogueOpen = false;
+            //dialogueOpen = false;
             hasTriggeredNPC = false;
             triggeredNPC = null; //not triggering with anything 
             InstructionText.SetActive(false);
-            dialogueOpen = false;
+            //dialogueOpen = false;
         }
         if (other.tag == "PickUp")
         {

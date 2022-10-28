@@ -9,7 +9,7 @@ public class DialogueUI : MonoBehaviour
 	public Text nameText;
 	public Text dialogueText;
 
-	public Animator animator;
+	//public Animator animator;
 
 
 	private Queue<string> sentences;
@@ -23,11 +23,9 @@ public class DialogueUI : MonoBehaviour
 	public void StartDialogue(Dialogue dialogue)
 	{
 		Debug.Log("starting dialogue");
+		//animator.SetBool("IsOpen", true);
 
-		/*
-		animator.SetBool("IsOpen", true);
-
-		//Debug.Log("Starting convo with " + dialogue.name); //testing
+		Debug.Log("Starting convo with " + dialogue.name); //testing
 
 		nameText.text = dialogue.name;
 
@@ -38,6 +36,8 @@ public class DialogueUI : MonoBehaviour
 			sentences.Enqueue(sentence);
 		}
 		DisplayNextSentence();
+		/*
+
 		*/
 	}
 
@@ -67,7 +67,10 @@ public class DialogueUI : MonoBehaviour
 	}
 	void EndDialogue()
 	{
-		//Debug.Log("End of conversation.");
-		animator.SetBool("IsOpen", false);
+		Debug.Log("End of conversation.");
+		//animator.SetBool("IsOpen", false);
+		LotosPlayer player = FindObjectOfType<LotosPlayer>();
+		player.dialogueOpen = false;
+		player.DiaUI.SetActive(false);
 	}
 }
