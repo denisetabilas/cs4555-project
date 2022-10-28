@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 61cc9cd70005c344e8ed2d2cd92bad26, type: 2}
-  resoDropdown: {fileID: 0}
+  resolutionDropdown: {fileID: 1885739391}
 --- !u!1 &368522759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 0}
-  resoDropdown: {fileID: 0}
+  resolutionDropdown: {fileID: 0}
 --- !u!1 &585797161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,7 +2335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 896689609}
   m_Layer: 5
-  m_Name: ResoDropdown
+  m_Name: Reso Dropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4841,7 +4841,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 337198060}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: SetResolution
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1885739392
 MonoBehaviour:
