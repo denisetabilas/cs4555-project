@@ -7,11 +7,9 @@ public class NPCTalk : Interactable
 {
      public NPC npc;
      public GameObject InstructionText;
-     private bool hasMet;
 
      private void Start()
      {
-          hasMet = false;
      }
 
      public override void Interact()
