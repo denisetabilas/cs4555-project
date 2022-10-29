@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 9529244}
   m_Layer: 0
   m_Name: Golden_Chest
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +195,7 @@ Animator:
   m_GameObject: {fileID: 144072}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d4bcc51767ba19d4594ad4737245ca81, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba9918ea7bc86b544b96093a6dc192da, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
