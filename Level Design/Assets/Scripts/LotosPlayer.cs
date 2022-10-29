@@ -21,11 +21,16 @@ public class LotosPlayer : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     //public float gravity = 20.0f;
 
+    //Set and initialize Health variables
+    public int maxHealth = 100;
+    public int currHealth;
+
+    public HealthBar healthBar;
 
     private bool hasTriggeredNPC; //check if player is colliding with NPC 
     
     private GameObject triggeredNPC;
-    public GameObject InstructionText;
+    //public GameObject InstructionText;
 
 
      //variables for dialogue 
@@ -50,12 +55,14 @@ public class LotosPlayer : MonoBehaviour
         hasTriggeredNPC = false;
         controller = GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
-        InstructionText.SetActive(false);
-          DiaUI.SetActive(false);
+        //InstructionText.SetActive(false);
+        DiaUI.SetActive(false);
          // DialogueBox.SetActive(false);
          // DialogueText.SetActive(false);
         dialogueOpen = false;
 
+        currHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         /*
         count = 0;
 
@@ -86,6 +93,10 @@ public class LotosPlayer : MonoBehaviour
         {
             anim.SetInteger("AnimationPar", 2);
         }
+        else if (Input.GetKeyDown("k"))
+        {
+            TakeDamage(2);
+        }
         else
         {
             anim.SetInteger("AnimationPar", 0);
@@ -96,9 +107,9 @@ public class LotosPlayer : MonoBehaviour
             //display instruction to press interact button 
             if (!dialogueOpen) //if player has not yet activated dialogue, display instruction how to activate
             {
-                InstructionText.SetActive(true);
+               //InstructionText.SetActive(true);
                DiaUI.SetActive(false);
-               InstructionText.GetComponent<Text>().text = "Press 'E' to Talk"; //replace E with not hard coded thing
+               //InstructionText.GetComponent<Text>().text = "Press 'E' to Talk"; //replace E with not hard coded thing
                  if (Input.GetButtonDown("Interact"))
                  {
                      if (interactable)
@@ -108,7 +119,7 @@ public class LotosPlayer : MonoBehaviour
                      }
                      else
                          Debug.Log("no interactable");
-                    InstructionText.SetActive(false);
+                    //InstructionText.SetActive(false);
                     DiaUI.SetActive(true);
                     dialogueOpen = true;
                     Debug.Log("Opened Dialogue");
@@ -237,7 +248,7 @@ public class LotosPlayer : MonoBehaviour
             //dialogueOpen = false;
             hasTriggeredNPC = false;
             triggeredNPC = null; //not triggering with anything 
-            InstructionText.SetActive(false);
+            //InstructionText.SetActive(false);
             //dialogueOpen = false;
         }
         if (other.tag == "PickUp")
@@ -246,7 +257,10 @@ public class LotosPlayer : MonoBehaviour
             RemoveFocus();
         }
     }
+    void TakeDamage(int damage)
+    {
+        currHealth -= damage;
 
-
-
+        healthBar.SetHealth(currHealth);
+    }
 }
