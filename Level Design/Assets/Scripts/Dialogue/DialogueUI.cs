@@ -6,8 +6,10 @@ using UnityEngine.UI; //for updating UI
 public class DialogueUI : MonoBehaviour
 {
 
-	public Text nameText;
+	public GameObject NameText;
 	public Text dialogueText;
+	private bool hasQuest;
+	private Quest quest;
 
 	//public Animator animator;
 
@@ -16,30 +18,34 @@ public class DialogueUI : MonoBehaviour
 	void Start()
 	{
 		sentences = new Queue<string>();
-	}
+	}	
 
-	
+	public void StartDialogue(NPC npc)
+     {
+		hasQuest = npc.hasQuest;
+		npc.hasQuest = false;
+		quest = npc.quest;
+		Debug.Log("Starting convo with " + npc.name); //testing
+		NameText.GetComponent<Text>().text = npc.name + "";
 
-	public void StartDialogue(Dialogue dialogue)
-	{
-		Debug.Log("starting dialogue");
-		//animator.SetBool("IsOpen", true);
+		Dialogue d;
+		if (!npc.hasMet)
+		{
+			d = new Dialogue(npc.name, npc.firstDialogue);
+			npc.hasMet = true;
+		}
+		else
+			d = new Dialogue(npc.name, npc.defaultDialogue);
 
-		Debug.Log("Starting convo with " + dialogue.name); //testing
-
-		nameText.text = dialogue.name;
-
-		//clear any sentences that were already there 
 		sentences.Clear();
-		foreach (string sentence in dialogue.sentences)
+		foreach (string sentence in d.sentences)
 		{
 			sentences.Enqueue(sentence);
 		}
 		DisplayNextSentence();
-		/*
 
-		*/
-	}
+	}		
+
 
 	public void DisplayNextSentence()
 	{
@@ -50,7 +56,6 @@ public class DialogueUI : MonoBehaviour
 		}
 
 		string sentence = sentences.Dequeue();
-		//Debug.Log(sentence)
 		//dialogueText.text = sentence;
 		StopAllCoroutines();
 		StartCoroutine(TypeSentence(sentence));
@@ -67,10 +72,19 @@ public class DialogueUI : MonoBehaviour
 	}
 	void EndDialogue()
 	{
+		if (hasQuest)
+          {
+			//open quest from Quest UI
+			FindObjectOfType<QuestUI>().OpenQuest(quest);
+			hasQuest = false;
+          }
 		Debug.Log("End of conversation.");
-		//animator.SetBool("IsOpen", false);
 		LotosPlayer player = FindObjectOfType<LotosPlayer>();
 		player.dialogueOpen = false;
 		player.DiaUI.SetActive(false);
+			
+		//animator.SetBool("IsOpen", false);
+
+		
 	}
 }

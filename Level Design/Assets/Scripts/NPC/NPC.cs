@@ -15,19 +15,8 @@ public class NPC : ScriptableObject
      new public string name = "New NPC";
      public List<string> firstDialogue = new List<string>();
      public List<string> defaultDialogue = new List<string>();
+     public bool hasQuest = true;
+     public Quest quest;
+     public bool hasMet = false;
 
-     /*
-     public List<string> getDialogue()
-     {
-          Debug.Log("getDialogue()");
-          if (!hasMet)
-          {
-               Debug.Log("return first dialogue");
-               hasMet = true;
-               return firstDialogue;
-          }
-          else
-               return defaultDialogue;
-     }
-     */
 }

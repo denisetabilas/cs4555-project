@@ -32,13 +32,11 @@ public class LotosPlayer : MonoBehaviour
     private GameObject triggeredNPC;
     //public GameObject InstructionText;
 
+     public GameObject QuestUI;
+     public bool hasActivatedQuest;
 
      //variables for dialogue 
      public GameObject DiaUI;
-
-     //public GameObject DialogueBox;
-     //public GameObject DialogueText;
-
     /*
     public GameObject spaceShip;
     public Text npcText;
@@ -63,6 +61,11 @@ public class LotosPlayer : MonoBehaviour
 
         currHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        InstructionText.SetActive(false);
+          DiaUI.SetActive(false);
+        dialogueOpen = false;
+          QuestUI.SetActive(false);
+          hasActivatedQuest = false;
         /*
         count = 0;
 
