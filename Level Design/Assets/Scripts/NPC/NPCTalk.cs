@@ -10,6 +10,8 @@ public class NPCTalk : Interactable
 
      private void Start()
      {
+        npc.hasQuest = true;
+        npc.hasMet = false;
      }
 
      public override void Interact()

@@ -10,8 +10,7 @@ public class QuestUI : MonoBehaviour
      public TextMeshProUGUI QuestTitle;
      public TextMeshProUGUI QuestDescription;
      public TextMeshProUGUI ItemsListText;
-     //private List<Item> ItemsList;
-     //public List<Item> RewardsList;
+     public TextMeshProUGUI RewardListText; 
      public bool QuestWindowIsOpen;
      public bool isAbleToOpenQuests;
 
@@ -28,6 +27,7 @@ public class QuestUI : MonoBehaviour
           QuestWindowIsOpen = false;
           isAbleToOpenQuests = false;
           ItemsListText.text = "";
+        RewardListText.text = "";
     }
      private void Update()
      {
@@ -70,6 +70,10 @@ public class QuestUI : MonoBehaviour
                Debug.Log("adding item " + i.name);
                ItemsListText.text += i.name + "\n";
           }
+          foreach (Item i in q.itemRewards)
+            {
+                RewardListText.text += i.name + "\n";
+            }
      }
 
      public void CloseQuest()
