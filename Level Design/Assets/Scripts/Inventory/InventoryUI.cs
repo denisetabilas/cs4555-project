@@ -12,8 +12,8 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventory = Inventory.instance;
-        inventory.onItemChangedCallback += UpdateUI;
+        inventory = Inventory.instance; //get instance of inventory in current context 
+        inventory.onItemChangedCallback += UpdateUI; 
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>(); //getting the children inside the inventory slot object
 
@@ -22,6 +22,7 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //open and close inventory window 
         if (Input.GetButtonDown("Inventory"))
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
@@ -35,6 +36,9 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+
+    //every time something is added or removed from the 
+    //quest inventory, call this method
     void UpdateUI()
     {
         Debug.Log("UPDATING UI");

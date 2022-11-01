@@ -10,6 +10,7 @@ public class DialogueUI : MonoBehaviour
 	public Text dialogueText;
 	private bool hasQuest;
 	private Quest quest;
+	public GameObject QuestInstruction;
 
 	//public Animator animator;
 
@@ -75,7 +76,16 @@ public class DialogueUI : MonoBehaviour
 		if (hasQuest)
           {
 			//open quest from Quest UI
-			FindObjectOfType<QuestUI>().OpenQuest(quest);
+			Debug.Log("Adding quest to quest inventory");
+			if (QuestInventory.instance.Add(quest))
+			{
+				Debug.Log("Quest was added to quest inventory");
+				QuestInstruction.SetActive(true);
+
+			}
+			else
+				Debug.Log("Quest was not added, not enough room");
+			//FindObjectOfType<QuestUI>().OpenQuest(quest);
 			hasQuest = false;
           }
 		Debug.Log("End of conversation.");

@@ -18,8 +18,7 @@ public class Quest : ScriptableObject
     public string description = "Description";
     public List<Item> itemsToCollect = new List<Item>();
     public List<Item> itemRewards = new List<Item>();
-     public virtual void Activate()
-     {
-          Debug.Log("Activating quest: " + name);
-     }
+
+    public List<Item> itemsAlreadyCorrected = new List<Item>();
+
 }
