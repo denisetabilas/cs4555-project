@@ -17,10 +17,7 @@ public class QuestUI : MonoBehaviour
      public TextMeshProUGUI RewardListText;
     public GameObject QuestInstruction;
 
-    //public TextMeshProUGUI QuestInstrText;
-    //private bool QuestInstructionDisplayed;
-     //public bool QuestWindowIsOpen;
-     //public bool isAbleToOpenQuests;
+     public Quest OpenedQuest;
 
 
     // Start is called before the first frame update
@@ -33,14 +30,6 @@ public class QuestUI : MonoBehaviour
         OpenedQuestUI.SetActive(false);
         ItemsListText.text = "";
         RewardListText.text = "";
-        //QuestInstructionDisplayed = false;
-
-
-          //ItemsList = new List<Item>();
-          //RewardsList = new List<Item>();
-        /*
-        QuestWindowIsOpen = false;
-        isAbleToOpenQuests = false;*/
     }
      private void Update()
      {
@@ -88,6 +77,8 @@ public class QuestUI : MonoBehaviour
     
      public void OpenQuest(Quest q)
      {
+          OpenedQuest = q;
+          Debug.Log("OpenedQuest: " + OpenedQuest.name);
           QuUI.SetActive(false);
           OpenedQuestUI.SetActive(true);
           Cursor.lockState = CursorLockMode.None;
@@ -110,9 +101,49 @@ public class QuestUI : MonoBehaviour
           Cursor.lockState = CursorLockMode.Locked;
           QuUI.SetActive(false);
         OpenedQuestUI.SetActive(false);
+          OpenedQuest = null;
      }
-    /*
-    */
+
+     public void FinishQuest()
+     {
+          Debug.Log("Finishing Quest: " + OpenedQuest.name);
+
+
+          //check if the required items are in the inventory 
+          foreach(Item questItem in OpenedQuest.itemsToCollect)
+          {
+               bool found = false;
+               foreach (Item inv in Inventory.instance.items)
+               {
+                    if (questItem.name.CompareTo(inv.name) == 0)
+                    {
+                         found = true;
+                         break;
+                    }
+               }
+               if (!found)
+               {
+                    Debug.Log("Item '" + questItem.name + "' is needed to complete the quest.");
+                    return;
+               }
+          }// finished loop means that all items were found
+
+          //check if there is enough space in inventory 
+          int InventorySpace = Inventory.instance.space;
+          if (InventorySpace - Inventory.instance.items.Count < OpenedQuest.itemRewards.Count) //not enough space in inventory for rewards
+          {
+               Debug.Log("Unable to finish quest, not enough space in inventoy.");
+               return;
+          }
+          foreach (Item r in OpenedQuest.itemRewards)
+          {
+               Inventory.instance.Add(r);
+          }
+
+          QuestInventory.instance.Remove(OpenedQuest);
+          CloseQuest();
+
+     }
 
     
 
