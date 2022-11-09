@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+
+
+
 public class LotosPlayer : MonoBehaviour
 {
-
+    public Interactable focus;
     private Animator anim;
     private CharacterController controller;
+
+    Interactable interactable;
 
     public float speed = 600.0f;
     public float turnSpeed = 400.0f;
@@ -20,9 +27,17 @@ public class LotosPlayer : MonoBehaviour
 
     public HealthBar healthBar;
 
+    private bool hasTriggeredNPC; //check if player is colliding with NPC 
+    
+    private GameObject triggeredNPC;
+    public GameObject InstructionText;
+
+     public GameObject QuestUI;
+     public bool hasActivatedQuest;
+
+     //variables for dialogue 
+     public GameObject DiaUI;
     /*
-    private GameObject triggeringNpc;
-    private bool triggering; //check if player is colliding with NPC 
     public GameObject spaceShip;
     public Text npcText;
     public GameObject panel;
@@ -30,16 +45,22 @@ public class LotosPlayer : MonoBehaviour
 
 
     private int count;
-    private bool dialogueOpen = false;
     */
+    public bool dialogueOpen;
+    
     void Start()
     {
+        hasTriggeredNPC = false;
         controller = GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
+        InstructionText.SetActive(false);
+        DiaUI.SetActive(false);
+        QuestUI.SetActive(false);
+        dialogueOpen = false;
 
         currHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-
+        hasActivatedQuest = false;
         /*
         count = 0;
 
@@ -79,72 +100,123 @@ public class LotosPlayer : MonoBehaviour
             anim.SetInteger("AnimationPar", 0);
         }
 
-        /*
-        if (triggering)
+        if (hasTriggeredNPC)
         {
-            //print("Player is triggering with " + triggeringNpc); //for testing 
-            //npcText.SetActive(true);
-            if(dialogueOpen)
-                npcText.text = "";
-            else
-                npcText.text = "Press 'E'";
-            if (Input.GetKeyDown(KeyCode.E))
+            //display instruction to press interact button 
+            if (!dialogueOpen) //if player has not yet activated dialogue, display instruction how to activate
             {
-                if (dialogueOpen == false)
-                {
+               InstructionText.SetActive(true);
+               DiaUI.SetActive(false);
+               InstructionText.GetComponent<Text>().text = "Press 'E' to Talk"; //replace E with not hard coded thing
+                 if (Input.GetButtonDown("Interact"))
+                 {
+                     if (interactable)
+                     {
+                         //Debug.Log("focus interactable");
+                         SetFocus(interactable);
+                     }
+                     else
+                         Debug.Log("no interactable");
+                    InstructionText.SetActive(false);
+                    DiaUI.SetActive(true);
                     dialogueOpen = true;
-                    panel.SetActive(true);
-                    dialogueText.text = "Collect the Spaceship Parts!";
-                    npcText.text = "";
-                }
-                else
-                    npcText.text = "Press 'E'";
+                    Debug.Log("Opened Dialogue");
+                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.F) &&  dialogueOpen)
+            else // the dialogue has been activated 
             {
-                dialogueOpen = false;
-                dialogueText.text = "";
-                panel.SetActive(false);
+               if (Input.GetButtonDown("Interact"))
+               {
+                    FindObjectOfType<DialogueUI>().DisplayNextSentence();
+               }
             }
         }
         else
-        {
-            npcText.text = "";
-            dialogueText.text = "";
-            panel.SetActive(false);
-        }
-        */
+          {
+               if (dialogueOpen)
+               {
+                    if (Input.GetButtonDown("Interact"))
+                    {
+                         FindObjectOfType<DialogueUI>().DisplayNextSentence();
+                    }
+               }
+          }
 
     }
-    /*
-    void OnTriggerEnter (Collider other) //if player is colliding
+    void SetFocus(Interactable newFocus)
     {
+        if (newFocus != focus)
+        {
+            if (focus != null)
+                focus.OnDefocused();
+            focus = newFocus;
+            //motor.FollowTarget(newFocus);
+        }
+        Debug.Log("Setting focus");
+
+        newFocus.OnFocused(transform); //notify interactable every click on it 
+
+    }
+
+    void RemoveFocus()
+    {
+        if (focus != null) //if player is focused on something, notify that we are removing the focus
+            focus.OnDefocused();
+        focus = null;
+        //motor.StopFollowingTarget();
+    }
+
+
+    void OnTriggerEnter(Collider other) //if player is colliding
+    {
+        Debug.Log("triggered");
+        
         if (other.tag == "NPC") //if the object it is colliding with has the tag NPC
         {
-            triggering = true; //then it will trigger the event 
-            triggeringNpc = other.gameObject; //selecting the npc as the trigger object 
+               hasTriggeredNPC = true;
+               //Debug.Log("Collided with NPC");
+                interactable = other.GetComponent<Interactable>();
+
+            /*
+         triggering = true; //then it will trigger the event 
+         triggeringNpc = other.gameObject; //selecting the npc as the trigger object 
+            */
         }
-        else if(other.tag == "PickUp")
+        else if (other.tag == "PickUp")
         {
-            other.gameObject.SetActive(false);
-            count++;
-            SetCount();
+            //hasTriggeredNPC = true;
+            Debug.Log("Collided with PickUp");
+            interactable = other.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                Debug.Log("focus interactable");
+                SetFocus(interactable);
+            }
+            else
+                Debug.Log("no interactable");
+            //other.gameObject.SetActive(false);
+            //count++;
+            //SetCount();
         }
     }
     void OnTriggerExit(Collider other) //
     {
+        
         if (other.tag == "NPC") 
         {
-            dialogueOpen = false;
-            triggering = false;
-            triggeringNpc = null; //not triggering with anything 
+            //dialogueOpen = false;
+            hasTriggeredNPC = false;
+            triggeredNPC = null; //not triggering with anything 
+            InstructionText.SetActive(false);
+            //dialogueOpen = false;
         }
-
-    }*/
-
-    //Damage Taking method
-    void TakeDamage(int damage) 
+        if (other.tag == "PickUp")
+        {
+            hasTriggeredNPC = false;
+            RemoveFocus();
+        }
+    }
+    void TakeDamage(int damage)
     {
         currHealth -= damage;
 

@@ -23,6 +23,8 @@ public class ThirdPersonMovement : MonoBehaviour
 	Vector3 velocity;
 	bool isGrounded;
 
+	
+
 	void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
@@ -60,5 +62,10 @@ public class ThirdPersonMovement : MonoBehaviour
 			controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
 		}
+
+		//if player is within radius 
+			//if object is interactable 
+				//set focus to interactable 
+				//interact 
 	}
 }

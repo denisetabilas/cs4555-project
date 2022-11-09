@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae2ebffc91b62943bc4f15f877f7542, type: 3}
+  m_Name: GearUpQuest
+  m_EditorClassIdentifier: 
+  name: Gear Up
+  description: A strange stranger needs help to return to their home. Unfortunately,
+    there are enemies blocking the path... Find a weapon in one of the chests up
+    ahead and get ready for battle!
+  itemsToCollect:
+  - {fileID: 11400000, guid: 90d10f8f8ccef6548ae3b31f669807c0, type: 2}
+  itemRewards:
+  - {fileID: 11400000, guid: 0c4afd94eb839a54886ca709410510d4, type: 2}
