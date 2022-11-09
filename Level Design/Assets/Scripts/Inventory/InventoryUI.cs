@@ -26,12 +26,19 @@ public class InventoryUI : MonoBehaviour
         if (Input.GetButtonDown("Inventory"))
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
+
+               if (inventoryUI.activeSelf == true)
+                    Cursor.lockState = CursorLockMode.None;
+               else
+                    Cursor.lockState = CursorLockMode.Locked;
+               /*
                if (Cursor.lockState == CursorLockMode.Locked)
                {
                     Cursor.lockState = CursorLockMode.None;
                }
                else
                     Cursor.lockState = CursorLockMode.Locked;
+               */
 
         }
     }

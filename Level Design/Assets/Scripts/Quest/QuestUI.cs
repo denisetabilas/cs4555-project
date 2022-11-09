@@ -121,6 +121,14 @@ public class QuestUI : MonoBehaviour
                          break;
                     }
                }
+               foreach (Item equippedItem in EquippedInventory.instance.equippedItems)
+               {
+                    if (questItem.name.CompareTo(equippedItem.name) == 0)
+                    {
+                         found = true;
+                         break;
+                    }
+               }
                if (!found)
                {
                     Debug.Log("Item '" + questItem.name + "' is needed to complete the quest.");
