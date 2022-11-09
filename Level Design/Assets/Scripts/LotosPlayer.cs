@@ -142,45 +142,6 @@ public class LotosPlayer : MonoBehaviour
                }
           }
 
-
-
-        /*
-        if (triggering)
-        {
-            //print("Player is triggering with " + triggeringNpc); //for testing 
-            //npcText.SetActive(true);
-            if(dialogueOpen)
-                npcText.text = "";
-            else
-                npcText.text = "Press 'E'";
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (dialogueOpen == false)
-                {
-                    dialogueOpen = true;
-                    panel.SetActive(true);
-                    dialogueText.text = "Collect the Spaceship Parts!";
-                    npcText.text = "";
-                }
-                else
-                    npcText.text = "Press 'E'";
-            }
-
-            if (Input.GetKeyDown(KeyCode.F) &&  dialogueOpen)
-            {
-                dialogueOpen = false;
-                dialogueText.text = "";
-                panel.SetActive(false);
-            }
-        }
-        else
-        {
-            npcText.text = "";
-            dialogueText.text = "";
-            panel.SetActive(false);
-        }
-        */
-
     }
     void SetFocus(Interactable newFocus)
     {

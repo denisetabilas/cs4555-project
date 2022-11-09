@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+/*
+ Interactable objects will derive from this class
+ */
 public class Interactable : MonoBehaviour
 {
      public float radius = 3f; //how close player needs to be 
@@ -55,6 +60,7 @@ public class Interactable : MonoBehaviour
           player = null;
           hasInteracted = false;
      }
+
 
      void OnDrawGizmosSelected ()
      {
