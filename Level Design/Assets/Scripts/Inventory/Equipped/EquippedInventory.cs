@@ -45,12 +45,8 @@ public class EquippedInventory : MonoBehaviour
                if (onItemChangedCallback != null)
                     onItemChangedCallback.Invoke(); //UI update
           }
-
-          LotosPlayer player = FindObjectOfType<LotosPlayer>();
-        player.IncreaseDefense(item.AddedDefense);
-          player.IncreaseAttack(item.AddedAttack);
-
-
+          FindObjectOfType<LotosPlayer>().IncreaseDefense(item.AddedDefense);
+          FindObjectOfType<LotosPlayer>().IncreaseAttack(item.AddedAttack);
 
           return true;
      }
@@ -59,18 +55,16 @@ public class EquippedInventory : MonoBehaviour
      {
           // move back to main inventory
 
-          //items.Remove(item);
           Inventory.instance.Add(item);
           equippedItems.Remove(item);
 
           if (onItemChangedCallback != null)
                onItemChangedCallback.Invoke(); //UI update   
 
-        //FindObjectOfType<LotosPlayer>().DecreaseDefense(item.AddedDefense);
 
-          LotosPlayer player = FindObjectOfType<LotosPlayer>();
-          player.DecreaseDefense(item.AddedDefense);
-          player.DecreaseAttack(item.AddedAttack);
+
+          FindObjectOfType<LotosPlayer>().DecreaseDefense(item.AddedDefense);
+          FindObjectOfType<LotosPlayer>().DecreaseAttack(item.AddedAttack);
 
      }
 }

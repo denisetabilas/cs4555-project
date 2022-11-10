@@ -235,7 +235,7 @@ public class LotosPlayer : MonoBehaviour
      public void IncreaseAttack(int n)
      {
           currAttack += n;
-          attackBar.SetAttack(currDefense);
+          attackBar.SetAttack(currAttack);
      }
      public void DecreaseAttack(int n)
      {
