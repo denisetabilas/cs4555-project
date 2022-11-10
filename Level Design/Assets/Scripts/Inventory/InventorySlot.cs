@@ -9,7 +9,14 @@ public class InventorySlot : MonoBehaviour
 
      Item item;
 
-     public void AddItem(Item newItem)
+    public Button ItemButton;
+
+    public void Update()
+    {
+
+    }
+
+    public void AddItem(Item newItem)
      {
           item = newItem;
 
@@ -33,6 +40,8 @@ public class InventorySlot : MonoBehaviour
                return;
           Inventory.instance.Remove(item);
      }
+
+    
 
      public void UseItem()
      {
