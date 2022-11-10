@@ -16,3 +16,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 62a37e5c738811c4f85bfa83074fc74e, type: 3}
   isDefaultItem: 0
   isEquippable: 1
+  AddedDefense: 20

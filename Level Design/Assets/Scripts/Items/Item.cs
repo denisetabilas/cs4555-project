@@ -7,8 +7,10 @@ public class Item : ScriptableObject
      public Sprite icon = null;
      public bool isDefaultItem = false; //default items wont be added to inventory
      public bool isEquippable = false; //default item created is not able to be equipped 
+     public int AddedDefense = 0;
+    public int AddedAttack = 0;
 
-     public virtual void Use()
+    public virtual void Use()
      {
           //use item 
           //use actions different for different items 

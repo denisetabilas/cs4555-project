@@ -45,6 +45,11 @@ public class EquippedInventory : MonoBehaviour
                if (onItemChangedCallback != null)
                     onItemChangedCallback.Invoke(); //UI update
           }
+
+        FindObjectOfType<LotosPlayer>().IncreaseDefense(item.AddedDefense);
+        
+
+
           return true;
      }
 
@@ -58,5 +63,7 @@ public class EquippedInventory : MonoBehaviour
 
           if (onItemChangedCallback != null)
                onItemChangedCallback.Invoke(); //UI update   
-     }
+
+        FindObjectOfType<LotosPlayer>().DecreaseDefense(item.AddedDefense);
+    }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Armor Item", menuName = "Inventory/ItemArmor")] //create item in the project
 public class ItemArmor : Item
 {
+
      public ItemArmor() //when item is created this is default attributes
      {
           isEquippable = true; 
