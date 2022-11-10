@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 9529244}
   - component: {fileID: 5869017204614146795}
   - component: {fileID: 7127968373000749544}
+  - component: {fileID: -1098158009218166819}
   m_Layer: 0
   m_Name: Golden_Chest
   m_TagString: Interactable
@@ -218,8 +219,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1786802, y: 1.0325556, z: 0.83315635}
-  m_Center: {x: -0.025331378, y: 0.01627779, z: -0.08342175}
+  m_Size: {x: 1.7330208, y: 1.2348299, z: 1.0439925}
+  m_Center: {x: -0.02819398, y: 0.08762121, z: -0.02430147}
 --- !u!114 &7127968373000749544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +235,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myChest: {fileID: 9529244}
   Open: Open
+--- !u!65 &-1098158009218166819
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144072}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3, y: 1.0476336, z: 0.6810589}
+  m_Center: {x: 1.40228e-16, y: -0.023816824, z: -0.015442967}
 --- !u!1 &160378
 GameObject:
   m_ObjectHideFlags: 0
