@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 970fc5b936c30674cacfadd258578da6, type: 3}
-  m_Name: Wooden Sword
+  m_Script: {fileID: 11500000, guid: f1ef3838d1622bf4389850221a76e6a1, type: 3}
+  m_Name: WoodenSword
   m_EditorClassIdentifier: 
   name: Wooden Sword
   icon: {fileID: 21300000, guid: 07d77724f2b28be47b3b1e798e147d9e, type: 3}
   isDefaultItem: 0
+  isEquippable: 1
+  AddedDefense: 0
+  AddedAttack: 5

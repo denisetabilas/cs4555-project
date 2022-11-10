@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class EquippedInventorySlot : MonoBehaviour
 {
      public Image icon;
 
@@ -9,14 +11,7 @@ public class InventorySlot : MonoBehaviour
 
      Item item;
 
-    public Button ItemButton;
-
-    public void Update()
-    {
-
-    }
-
-    public void AddItem(Item newItem)
+     public void AddItem(Item newItem)
      {
           item = newItem;
 
@@ -38,16 +33,15 @@ public class InventorySlot : MonoBehaviour
      {
           if (!item)
                return;
-          Inventory.instance.Remove(item);
+          EquippedInventory.instance.Remove(item);
      }
 
-    
-
+     /*
      public void UseItem()
      {
           if (item != null)
           {
                item.Use();
           }
-     }
+     }*/
 }

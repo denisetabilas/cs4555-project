@@ -24,8 +24,14 @@ public class LotosPlayer : MonoBehaviour
     //Set and initialize Health variables
     public int maxHealth = 100;
     public int currHealth;
+    public int BaseDefense = 20;
+    public int currDefense;
+     public int BaseAttack = 5;
+     public int currAttack;
 
     public HealthBar healthBar;
+    public DefenseBar defenseBar;
+     public AttackBar attackBar;
 
     private bool hasTriggeredNPC; //check if player is colliding with NPC 
     
@@ -60,22 +66,14 @@ public class LotosPlayer : MonoBehaviour
 
         currHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        defenseBar.SetBaseDefense(BaseDefense);
+        currDefense = BaseDefense;
+          attackBar.SetBaseAttack(BaseAttack);
+          currAttack = BaseAttack;
+          
         hasActivatedQuest = false;
-        /*
-        count = 0;
 
-        SetCount();
-        spaceShip.SetActive(false);
-        */
     }
-    /*
-    void SetCount()
-    {
-        if (count >= 4)
-        {
-            spaceShip.SetActive(true);
-        }
-    }*/
 
     void Update()
     {
@@ -222,4 +220,26 @@ public class LotosPlayer : MonoBehaviour
 
         healthBar.SetHealth(currHealth);
     }
+
+    public void IncreaseDefense(int n)
+    {
+        currDefense += n;
+        defenseBar.SetDefense(currDefense);
+    }
+
+    public void DecreaseDefense(int n)
+    {
+        currDefense -= n;
+        defenseBar.SetDefense(currDefense);
+    }
+     public void IncreaseAttack(int n)
+     {
+          currAttack += n;
+          attackBar.SetAttack(currDefense);
+     }
+     public void DecreaseAttack(int n)
+     {
+          currAttack -= n;
+          attackBar.SetAttack(currAttack);
+     }
 }
