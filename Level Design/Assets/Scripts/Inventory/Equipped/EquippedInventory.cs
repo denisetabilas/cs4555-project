@@ -46,8 +46,10 @@ public class EquippedInventory : MonoBehaviour
                     onItemChangedCallback.Invoke(); //UI update
           }
 
-        FindObjectOfType<LotosPlayer>().IncreaseDefense(item.AddedDefense);
-        
+          LotosPlayer player = FindObjectOfType<LotosPlayer>();
+        player.IncreaseDefense(item.AddedDefense);
+          player.IncreaseAttack(item.AddedAttack);
+
 
 
           return true;
@@ -64,6 +66,11 @@ public class EquippedInventory : MonoBehaviour
           if (onItemChangedCallback != null)
                onItemChangedCallback.Invoke(); //UI update   
 
-        FindObjectOfType<LotosPlayer>().DecreaseDefense(item.AddedDefense);
-    }
+        //FindObjectOfType<LotosPlayer>().DecreaseDefense(item.AddedDefense);
+
+          LotosPlayer player = FindObjectOfType<LotosPlayer>();
+          player.DecreaseDefense(item.AddedDefense);
+          player.DecreaseAttack(item.AddedAttack);
+
+     }
 }

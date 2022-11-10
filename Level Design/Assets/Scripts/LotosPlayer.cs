@@ -26,9 +26,12 @@ public class LotosPlayer : MonoBehaviour
     public int currHealth;
     public int BaseDefense = 20;
     public int currDefense;
+     public int BaseAttack = 5;
+     public int currAttack;
 
     public HealthBar healthBar;
     public DefenseBar defenseBar;
+     public AttackBar attackBar;
 
     private bool hasTriggeredNPC; //check if player is colliding with NPC 
     
@@ -65,6 +68,9 @@ public class LotosPlayer : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         defenseBar.SetBaseDefense(BaseDefense);
         currDefense = BaseDefense;
+          attackBar.SetBaseAttack(BaseAttack);
+          currAttack = BaseAttack;
+          
         hasActivatedQuest = false;
 
     }
@@ -226,4 +232,14 @@ public class LotosPlayer : MonoBehaviour
         currDefense -= n;
         defenseBar.SetDefense(currDefense);
     }
+     public void IncreaseAttack(int n)
+     {
+          currAttack += n;
+          attackBar.SetAttack(currDefense);
+     }
+     public void DecreaseAttack(int n)
+     {
+          currAttack -= n;
+          attackBar.SetAttack(currAttack);
+     }
 }
