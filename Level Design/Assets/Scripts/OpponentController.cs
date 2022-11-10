@@ -5,26 +5,28 @@ using UnityEngine.AI;
 
 public class OpponentController : MonoBehaviour
 {
-    public float health;
+    public float health = 10;
 
+    private Animator anim;
     public Transform player;
     public NavMeshAgent agent;
     public LayerMask whatIsGround, whatIsPlayer;
 
     // Idle
     public Vector3 walkPoint;
-    bool walkPointSet;
+    public bool walkPointSet;
     public float walkPointRange;
 
     // Attack
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    public bool alreadyAttacked;
 
     // States
     public float sightRange, attackRange;
     public bool playerInSight, playerInAttack;
 
     void Awake () {
+        anim = gameObject.GetComponentInChildren<Animator>();
         player = GameObject.Find("Third Person Player").transform;
         agent = GetComponent<NavMeshAgent>();
     } 
@@ -91,7 +93,10 @@ public class OpponentController : MonoBehaviour
         playerInAttack = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if(!playerInSight && !playerInAttack) Idle();
-        if(playerInSight && !playerInAttack) Chase();
+        if(playerInSight && !playerInAttack){
+            anim.SetInteger("AnimParm", 1);
+            Chase();
+        }
         if(playerInSight && playerInAttack) Attack();        
     }
 
