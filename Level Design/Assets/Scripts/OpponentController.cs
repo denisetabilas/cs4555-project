@@ -18,7 +18,7 @@ public class OpponentController : MonoBehaviour
     public float walkPointRange;
 
     // Attack
-    public float timeBetweenAttacks;
+    public float timeBetweenAttacks=5;
     public bool alreadyAttacked;
 
     // States
@@ -67,6 +67,7 @@ public class OpponentController : MonoBehaviour
 
         if (!alreadyAttacked){
             alreadyAttacked = true;
+               FindObjectOfType<LotosPlayer>().TakeDamage(1);
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
