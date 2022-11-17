@@ -62,9 +62,17 @@ public class EquippedInventory : MonoBehaviour
                onItemChangedCallback.Invoke(); //UI update   
 
 
-
-          FindObjectOfType<LotosPlayer>().DecreaseDefense(item.AddedDefense);
-          FindObjectOfType<LotosPlayer>().DecreaseAttack(item.AddedAttack);
+          LotosPlayer p = FindObjectOfType<LotosPlayer>();
+          if (item.isArmor == true)
+          {
+               p.DecreaseDefense(item.AddedDefense);
+               p.UnequipHelmet();
+          }
+          else if (item.isWeapon == true)
+          {
+               p.UnequipSword();
+               p.DecreaseAttack(item.AddedAttack);
+          }
 
      }
 }
