@@ -16,5 +16,7 @@ public class ItemWeapon : Item
           Debug.Log("Equipping weapon " + name);
           EquippedInventory.instance.Add(this);
           Inventory.instance.Remove(this);
+
+          FindObjectOfType<LotosPlayer>().EquipSword();
      }
 }

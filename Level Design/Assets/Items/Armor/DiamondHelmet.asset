@@ -17,3 +17,6 @@ MonoBehaviour:
   isDefaultItem: 0
   isEquippable: 1
   AddedDefense: 20
+  AddedAttack: 0
+  isWeapon: 0
+  isArmor: 1

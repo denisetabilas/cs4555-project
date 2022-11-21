@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Level Design/Assets/Scripts/Chest.meta
-guid: c05c1328da333874996fde4691cf49d7
-========
+<<<<<<<< HEAD:Level Design/Assets/Scripts/Stats.meta
 guid: 1cbe3fb6508765e4ea2b537765d12fb6
->>>>>>>> denise-was-here-part-3:Level Design/Assets/Scripts/Stats.meta
+========
+guid: c05c1328da333874996fde4691cf49d7
+>>>>>>>> fabio-was-also-here:Level Design/Assets/Scripts/Chest.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -14,6 +14,9 @@ public class LotosPlayer : MonoBehaviour
     private Animator anim;
     private CharacterController controller;
 
+     public GameObject Helmet;
+     public GameObject Sword;
+
     Interactable interactable;
 
     public float speed = 600.0f;
@@ -56,6 +59,9 @@ public class LotosPlayer : MonoBehaviour
     
     void Start()
     {
+          Helmet.SetActive(false);
+          Sword.SetActive(false);
+
         hasTriggeredNPC = false;
         controller = GetComponent<CharacterController>();
         anim = gameObject.GetComponentInChildren<Animator>();
@@ -214,7 +220,7 @@ public class LotosPlayer : MonoBehaviour
             RemoveFocus();
         }
     }
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currHealth -= damage;
 
@@ -235,11 +241,32 @@ public class LotosPlayer : MonoBehaviour
      public void IncreaseAttack(int n)
      {
           currAttack += n;
-          attackBar.SetAttack(currDefense);
+          attackBar.SetAttack(currAttack);
      }
      public void DecreaseAttack(int n)
      {
           currAttack -= n;
           attackBar.SetAttack(currAttack);
      }
+
+     public void EquipHelmet()
+     {
+          this.Helmet.SetActive(true);
+     }
+     public void UnequipHelmet()
+     {
+          this.Helmet.SetActive(false);
+     }
+
+     public void EquipSword()
+     {
+          this.Sword.SetActive(true);
+     }
+
+     public void UnequipSword()
+     {
+          this.Sword.SetActive(false);
+     }
+
+
 }
