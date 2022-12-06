@@ -95,9 +95,9 @@ public class LotosPlayer : MonoBehaviour
         {
             anim.SetInteger("AnimationPar", 2);
         }
-        else if (Input.GetKeyDown("k"))
+        else if (Input.GetKey("r"))
         {
-            TakeDamage(2);
+            anim.SetInteger("AnimationPar", 3);
         }
         else
         {
