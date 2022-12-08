@@ -71,6 +71,6 @@ public class Interactable : MonoBehaviour
           }
 
           Gizmos.color = Color.yellow;
-          Gizmos.DrawWireSphere(transform.position, radius);
+          Gizmos.DrawWireSphere(interactionTransform.position, radius);
      }
 }
